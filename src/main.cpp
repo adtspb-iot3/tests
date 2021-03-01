@@ -3,7 +3,7 @@
 #include "knopka.h"
 #define TIME_SHORT 600
 #define TIME_DOUBLE 500
-const int TIMER_DOUBLE_PRESS {300};
+const int TIMER_DOUBLE_PRESS {400};
 // bool volatile button1 {};
 bool flag{0};
 const int PIN {D3};
