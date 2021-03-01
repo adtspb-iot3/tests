@@ -3,8 +3,8 @@
 #include "knopka.h"
 #define TIME_SHORT 600
 #define TIME_DOUBLE 500
+
 const int TIMER_DOUBLE_PRESS {400};
-// bool volatile button1 {};
 bool flag{0};
 const int PIN {D3};
 //*************
@@ -18,19 +18,13 @@ enum class Stats{
 };
 Stats volatile sost{};
 //***********************
-// Knopka knopka (PIN, &flag);
 unsigned long volatile t1{};
 unsigned long volatile t2{};
 unsigned long volatile t3{};
 unsigned long volatile t_o{};
 //********************************
-bool button_down{};
-//***************************
-bool getShort(){
-  return t_o > millis();
-}
-//---------------------------
 void push_button_down();
+
 void ICACHE_RAM_ATTR push_button_up(){
   static unsigned long millis_prev_up;
   if (millis() - 200 > millis_prev_up)
@@ -46,6 +40,7 @@ void ICACHE_RAM_ATTR push_button_up(){
   }
   attachInterrupt(digitalPinToInterrupt(pin), push_button_down, FALLING);
 }
+//********************************
 void ICACHE_RAM_ATTR push_button_down(){
   static unsigned long millis_prev;
   if (millis() - 200 > millis_prev){
@@ -68,7 +63,6 @@ Timer timer(TIMER_DOUBLE_PRESS);
 unsigned long time_double{};
 //*************************
 void loop() {
-  // Serial.println(digitalRead(PIN));
   if(sost != Stats::NONE){//41
     switch(sost){
       case Stats::NONE:break; 
