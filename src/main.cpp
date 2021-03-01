@@ -77,6 +77,10 @@ void loop() {
     Serial.println( static_cast<int>(sost));
     sost = Stats::NONE;
     }
+    if(sost!=Stats::SHORT_PRESS){
+      Serial.println( static_cast<int>(sost));
+      sost = Stats::NONE;
+    }
   }
 }
  
