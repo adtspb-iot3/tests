@@ -3,7 +3,7 @@
 #include "knopka.h"
 #define TIME_SHORT 600
 #define TIME_DOUBLE 500
-int timer {500};
+const int TIMER_DOUBLE_PRESS {300};
 // bool volatile button1 {};
 bool flag{0};
 const int PIN {D3};
@@ -63,24 +63,21 @@ void setup(){
   pinMode(PIN,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(pin), push_button_down, FALLING);
 }
-  Timer time(timer);
+  Timer timer(TIMER_DOUBLE_PRESS);
 void loop() {
   // Serial.println(digitalRead(PIN));
   if(sost != Stats::NONE){//41
     if(sost== Stats::SHORT_PRESS)
     {
      
-      time.setTimer();
+      timer.setTimer();
     }
-   else if(!time.getTimer())
+   if(!timer.getTimer())
     {
     Serial.println( static_cast<int>(sost));
     sost = Stats::NONE;
     }
-    if(sost!=Stats::SHORT_PRESS){
-      Serial.println( static_cast<int>(sost));
-      sost = Stats::NONE;
-    }
+   
   }
 }
  
