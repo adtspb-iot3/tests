@@ -65,7 +65,7 @@ void setup(){
  
 void loop() {
   // Serial.println(digitalRead(PIN));
-  if(sost != Stats::NONE){
+  if(sost != Stats::NONE){//4
     Serial.println( static_cast<int>(sost));
     sost = Stats::NONE;
   }
