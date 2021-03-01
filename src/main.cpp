@@ -63,12 +63,15 @@ void setup(){
   pinMode(PIN,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(pin), push_button_down, FALLING);
 }
+//*************************
 Timer timer(TIMER_DOUBLE_PRESS);
-long time_double{};
+unsigned long time_double{};
+//*************************
 void loop() {
   // Serial.println(digitalRead(PIN));
   if(sost != Stats::NONE){//41
     switch(sost){
+      case Stats::NONE:break; 
       case Stats::SHORT_PRESS: 
         if(time_double == 0){
           time_double = millis() + TIMER_DOUBLE_PRESS;
