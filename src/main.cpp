@@ -63,21 +63,28 @@ void setup(){
   pinMode(PIN,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(pin), push_button_down, FALLING);
 }
-  Timer timer(TIMER_DOUBLE_PRESS);
+Timer timer(TIMER_DOUBLE_PRESS);
+long time_double{};
 void loop() {
   // Serial.println(digitalRead(PIN));
   if(sost != Stats::NONE){//41
-    if(sost== Stats::SHORT_PRESS)
-    {
-     
-      timer.setTimer();
+    switch(sost){
+      case Stats::SHORT_PRESS: 
+        if(time_double == 0){
+          time_double = millis() + TIMER_DOUBLE_PRESS;
+        } 
+      break;
+      case Stats::LONG_PRESS: Serial.println("Long");break;
+      case Stats::DOUBLE_PRESS: 
+        Serial.println("Double");
+        time_double = 0;
+      break;
     }
-   if(!timer.getTimer())
-    {
-    Serial.println( static_cast<int>(sost));
     sost = Stats::NONE;
-    }
-   
+  }
+  if(time_double && (time_double < millis())){
+    Serial.println("Short");
+    time_double = 0;
   }
 }
  

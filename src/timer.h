@@ -11,5 +11,6 @@ public:
   bool getTimer() { return t < millis(); }
   void setTimer(unsigned long dt = 0) {t = millis() + (dt == 0 ? dT : dt);}
   void setDt(unsigned long dt) { dT = dt; }
+  void clearTimer(){t = 0;}
 };
 #endif
