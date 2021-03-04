@@ -55,6 +55,8 @@ void ICACHE_RAM_ATTR push_button_down(){
 //******************* 
 void setup(){
   Serial.begin(115200);
+  Serial.println();
+  Serial.println();
   pinMode(PIN,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(pin), push_button_down, FALLING);
 }
@@ -67,9 +69,8 @@ void loop() {
     switch(sost){
       case Stats::NONE:break; 
       case Stats::SHORT_PRESS: 
-        if(time_double == 0){
+        if(time_double == 0)
           time_double = millis() + TIMER_DOUBLE_PRESS;
-        } 
       break;
       case Stats::LONG_PRESS: Serial.println("Long");break;
       case Stats::DOUBLE_PRESS: 
