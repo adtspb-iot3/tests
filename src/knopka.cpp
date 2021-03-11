@@ -4,4 +4,4 @@
  
 // void Knopka::cycle(){
  
-// }
+// }                                                            
