@@ -6,7 +6,7 @@
 
 const int TIMER_DOUBLE_PRESS {400};
 bool flag{0};
-const int PIN {D3};
+const int PIN {14};//{D3};
 //*************
 int pin{PIN};
 
